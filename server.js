@@ -10,6 +10,7 @@ const mongoose = require('mongoose')
 
 const indexRouter = require('./routes/index')
 const locationRouter = require('./routes/location')
+const eventRouter = require('./routes/events')
 
 
 app.set('view engine', 'ejs')
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({limit: '20mb', extended:false}))
 
 app.use('/', indexRouter)
 app.use('/locations', locationRouter)
+app.use('/events', eventRouter)
 
 
 app.listen(process.env.PORT || 3000)
