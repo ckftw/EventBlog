@@ -19,27 +19,26 @@
 </div>
 
 <div>
-    <label>Price</label>
-    <input type="number" name="cost"  value = "<% event.cost %>">
+  <label>Price</label>
+  <input type="number" name="cost" value="<% event.cost %>" />
 </div>
 
 <div>
   <label>Event Date</label>
   <input
     type="date"
-    name="eventDate"
-    value="<%= event.eventDate ==null ? '' :
-    event.eventDate.toISOString().split('T')[0] %> "
+    name="evenDate"
+    value="<%= event.evenDate ==null ? '' :
+    event.evenDate.toISOString().split('T')[0] %> "
   />
 </div>
 
 <div>
-    <label>Cover</label>
-    <input type="file" name="cover" >
+  <label>Cover</label>
+  <input type="file" name="cover" />
 </div>
 
-
 <div>
-    <label>Description</label>
-    <textarea name="description" > <%=event.description %></textarea>
+  <label>Description</label>
+  <textarea name="description"> <%=event.description %></textarea>
 </div>
