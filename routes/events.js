@@ -1,24 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 const Event = require("../models/event.js");
-const fs = require("fs");
 const Location = require("../models/location");
-const uploadPath = path.join("public", Event.coverImageBasePath);
 const imageMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
-const multer = require("multer");
-const upload = multer({
-    dest: uploadPath,
-    fileFilter: (req, file, callback) => {
-        callback(null, imageMimeTypes.includes(file.mimetype));
-    }
-});
 
 //All Events route
 router.get("/", async (req, res) => {
     let query = Event.find()
-    if(req.query.title != null && req.query.title != ''){
-        query = query.regex('title' , new RegExp(req.query.title, 'i'))
+    if (req.query.title != null && req.query.title != '') {
+        query = query.regex('title', new RegExp(req.query.title, 'i'))
     }
     try {
         const event = await query.exec()
@@ -37,31 +27,24 @@ router.get("/new", async (req, res) => {
 });
 
 //Create Event
-router.post("/", upload.single("cover"), async (req, res) => {
+router.post("/", async (req, res) => {
     const fileName = req.file != null ? req.file.filename : null;
     const event = new Event({
         title: req.body.title,
         location: req.body.location,
         evenDate: new Date(req.body.evenDate),
         cost: req.body.cost,
-        coverImageName: fileName,
         description: req.body.description
     });
+
+    saveCover(event, req.body.cover)
     try {
         const newEvent = await event.save();
         res.redirect(`events`);
     } catch {
-        if (event.coverImageName != null) {
-            removeEventCover(event.coverImageName);
-        }
         renderNewPage(res, event, true);
     }
 });
-function removeEventCover(fileName) {
-    fs.unlink(path.join(uploadPath, fileName), err => {
-        if (err) console.error(err);
-    });
-}
 async function renderNewPage(res, event, hasError = false) {
     try {
         const location = await Location.find({});
@@ -73,6 +56,16 @@ async function renderNewPage(res, event, hasError = false) {
         res.render("events/new", params);
     } catch {
         res.redirect("/events");
+    }
+}
+
+function saveCover(book, coverEncoded) {
+    if (coverEncoded == null) return
+    const cover = JSON.parse(coverEncoded)
+    if (cover != null && imageMimeTypes.includes(cover.type)) {
+        book.coverImage = new Buffer.from(cover.data, 'base64')
+        book.coverImageType = cover.type
+
     }
 }
 module.exports = router;
