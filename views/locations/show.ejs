@@ -1,0 +1,7 @@
+<h2><%= location.name %></h2>
+<% if (eventsByLocation.length > 0) { %>
+  <h2>Events By Location</h2>
+  <% eventsByLocation.forEach(event => { %>
+    <img height="150" width="100" src="<%= event.coverImagePath %>">
+  <% }) %>
+<% } %>

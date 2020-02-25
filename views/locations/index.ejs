@@ -9,5 +9,8 @@
 <% locations.forEach(location =>{
     %>
     <div><%= location.name %></div>
-    <%
-}) %>
+    <a href="/locations/<%= location.id %>">View</a>
+    <a href="/locations/<%= location.id %>/edit">Edit</a>
+    <%-include('../partials/deleteForm' ,
+    {url:`/locations/${location.id}`}) %>
+    <% }) %>
