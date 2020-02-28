@@ -1,4 +1,4 @@
-<h2>Search Location</h2>
+<h2 class="page-header">Search Event by Location</h2>
 <form action="/locations" method="GET">
     <label>Name</label>
     <input type="text" placeholder="Enter City Name" name="name" value="<%= searchOptions.name %>">
@@ -8,9 +8,11 @@
 <br>
 <% locations.forEach(location =>{
     %>
-    <div><%= location.name %></div>
-    <a href="/locations/<%= location.id %>">View</a>
-    <a href="/locations/<%= location.id %>/edit">Edit</a>
+<div><%= location.name %></div>
+<div class="btn-row">
+    <a class="btn btn-primary" href="/locations/<%= location.id %>">View</a>
+    <a class="btn btn-primary" href="/locations/<%= location.id %>/edit">Edit</a>
     <%-include('../partials/deleteForm' ,
     {url:`/locations/${location.id}`}) %>
+</div>
     <% }) %>

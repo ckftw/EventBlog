@@ -54,7 +54,7 @@ router.get('/:id', async (req, res) => {
         eventsByLocation: events
       })
     } catch(err) {
-        console.log(error)
+        console.log(err)
       res.redirect('/')
     }
   })
