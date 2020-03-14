@@ -1,44 +1,42 @@
-<div>
-  <label>Event</label>
-  <input type="text" name="title" value="<%= event.title %>" />
+<div class="form-row">
+  <div class="form-item">
+    <label>Event</label>
+    <input type="text" name="title" value="<%= event.title %>" />
+
+  </div>
+  <div class="form-item">
+    <label>Location</label>
+    <select name="location">
+      <% location.forEach(location =>{%> <% if(location.id===event.location){ %>
+      <option selected label="<%= location.name %>" value="<%= location.id %>"></option>
+      <% } else { %>
+      <option label="<%= location.name %>" value="<%=location.id %>"></option>
+      <% } %> <% }) %>
+    </select>
+  </div>
 </div>
 
-<div>
-  <label>Location</label>
-  <select name="location">
-    <% location.forEach(location =>{%> <% if(location.id===event.location){ %>
-    <option
-      selected
-      label="<%= location.name %>"
-      value="<%= location.id %>"
-    ></option>
-    <% } else { %>
-    <option label="<%= location.name %>" value="<%=location.id %>"></option>
-    <% } %> <% }) %>
-  </select>
+<div class="form-row">
+  <div class="form-item">
+    <label>Event Date</label>
+    <input type="date" min="2020-03-03" max="2020-12-12" name="evenDate" value="<%= event.evenDate ==null ? '' :
+      event.evenDate.toISOString().split('T')[0] %> " />
+  </div>
+
+  <div class="form-item">
+    <label>Price</label>
+    <input type="number" name="cost" value="<% event.cost %>" />
+  </div>
 </div>
 
-<div>
-  <label>Price</label>
-  <input type="number" name="cost" value="<% event.cost %>" />
-</div>
+<div class="form-row">
+  <div class="form-item form-item-no-grow">
+    <label>Cover</label>
+    <input type="file" name="cover" class="filepond" />
+  </div>
 
-<div>
-  <label>Event Date</label>
-  <input
-    type="date"
-    name="evenDate"
-    value="<%= event.evenDate ==null ? '' :
-    event.evenDate.toISOString().split('T')[0] %> "
-  />
-</div>
-
-<div>
-  <label>Cover</label>
-  <input type="file" name="cover" class="filepond" />
-</div>
-
-<div>
-  <label>Description</label>
-  <textarea name="description"> <%=event.description %></textarea>
+  <div class="form-item">
+    <label>Description</label>
+    <textarea name="description"> <%=event.description %></textarea>
+  </div>
 </div>

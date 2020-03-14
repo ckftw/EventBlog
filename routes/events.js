@@ -45,6 +45,22 @@ router.post("/", async (req, res) => {
         renderNewPage(res, event, true);
     }
 });
+
+//SHOW EVENTS
+
+router.get('/:id', async(req,res)=>{
+    try{
+        const event = await Event.findById(req.params.id).populate('location').exec()
+        res.render('events/show', {event:event})
+    }catch{
+        res.redirect('/')
+    }
+})
+
+//edit events
+
+
+
 async function renderNewPage(res, event, hasError = false) {
     try {
         const location = await Location.find({});

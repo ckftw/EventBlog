@@ -1,0 +1,16 @@
+<h2><%=event.title %></h2>
+<img width="100" height="150" src="<%= event.coverImagePath %>">
+<div>
+    Location: <%=event.location.name %>
+</div>
+
+<div>
+    Event Date: <%=event.evenDate.toDateString() %>
+</div>
+
+<div>Description: <%=event.description%></div>
+<div>Price : Rs.<%=event.cost %></div>
+
+<a href="/events<%= event.id %> /edit">Edit</a>
+<%- include('../partials/deleteForm', {url:`/events/${event.id}`}) %>
+<a href="/locations/<%= event.location.id %>">View Location</a>

@@ -1,8 +1,16 @@
 <h2 class="page-header">Search Event by Location</h2>
 <form action="/locations" method="GET">
-    <label>Name</label>
-    <input type="text" placeholder="Enter City Name" name="name" value="<%= searchOptions.name %>">
-    <button type="submit">Search</button>
+    <div class="form-group">
+        <div class="form-item">
+            <label>Name</label>
+            <input type="text" placeholder="Enter City Name" name="name" value="<%= searchOptions.name %>">
+        </div>
+    </div>
+
+    <div class="form-row form-row-end">
+        <button type="submit">Search</button>
+    </div>
+
 </form>
 
 <br>
@@ -15,4 +23,4 @@
     <%-include('../partials/deleteForm' ,
     {url:`/locations/${location.id}`}) %>
 </div>
-    <% }) %>
+<% }) %>
