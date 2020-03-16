@@ -1,7 +1,11 @@
 <h2 class="page-header">New Event</h2>
 <form action ="/events" method="POST">
 <%- include('form_fields') %>
-<a href="/events">Cancel</a>
-<button type="submit">Create</button>
+<div class="form-row form-row-end btn-row">
+    <a class="btn btn-danger" href="/events">Cancel</a>
+<button class="btn btn-primary" type="submit">Create</button>
+
+</div>
+
 </form>
 

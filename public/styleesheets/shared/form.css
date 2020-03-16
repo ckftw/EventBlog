@@ -9,6 +9,9 @@
     display:flex;
     margin-bottom: .5rem;
 }
+.form-row-end{
+    justify-content: flex-end;
+}
 
 .form-item{
     display:flex;
