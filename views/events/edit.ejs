@@ -1,0 +1,6 @@
+<h2 class="page-header">Edit Event</h2>
+<form action ="/events/<%= event.id %>?_method=PUT" method="POST">
+<%- include('form_fields') %>
+<a href="/events">Cancel</a>
+<button type="submit">Update</button>
+</form>

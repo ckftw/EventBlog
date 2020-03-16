@@ -2,6 +2,8 @@
 <h2 class="eventByLocation">Events in <%= location.name %></h2>
 <% if (eventsByLocation.length > 0) { %>
   <% eventsByLocation.forEach(event => { %>
+    <a href="/events/<%= event.id %>">
     <img height="150" width="100" src="<%= event.coverImagePath %>">
+    </a>
   <% }) %>
 <% } %>
