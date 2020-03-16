@@ -16,11 +16,16 @@
 <br>
 <% locations.forEach(location =>{
     %>
-<div><%= location.name %></div>
-<div class="btn-row">
-    <a class="btn btn-primary" href="/locations/<%= location.id %>">View</a>
-    <a class="btn btn-primary" href="/locations/<%= location.id %>/edit">Edit</a>
-    <%-include('../partials/deleteForm' ,
+
+<div class="location-row">
+    <div class="location-name"><%= location.name %></div>
+    <div class="btn-row">
+        <a class="btn btn-primary" href="/locations/<%= location.id %>">View</a>
+        <a class="btn btn-primary" href="/locations/<%= location.id %>/edit">Edit</a>
+        <%-include('../partials/deleteForm' ,
     {url:`/locations/${location.id}`}) %>
+    </div>
+
 </div>
+
 <% }) %>

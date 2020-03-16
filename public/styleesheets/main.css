@@ -2,6 +2,8 @@
 @import 'shared/header.css';
 @import 'shared/buttons.css';
 @import 'shared/form.css';
+@import 'shared/locations.css';
+@import 'shared/events.css';
 
 :root{
     font-size:20px;
@@ -32,4 +34,8 @@ body{
 
 .eventByLocation{
     text-align: center;
+}
+
+.error-message{
+    color:hsl(var(--color-danger-hue), 100%, 50%);
 }

@@ -11,14 +11,7 @@
     </div>
     
 </form>
-<div>
-    <% event.forEach(event =>{
-        %>
-        <a href="/events/<%= event.id%>">
-    <img height="150" width="100" src="<%= event.coverImagePath%>">
-</a>
-    <%
-    }) %>
-</div>
+<br>
+<%-include('../partials/bookgrid',{events:event, large:true}) %>
 
 <br>

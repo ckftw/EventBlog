@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     })
     try {
         const newLocation = await location.save()
-        res.redirect(`locations/${newLocation.id}`)
+        res.redirect('events/new')
     } catch{
         let locals = { errorMessage: `something went wrong` }
         res.render('locations/new', {

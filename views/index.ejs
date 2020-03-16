@@ -1,11 +1,5 @@
 
 <h2 class="page-header"> Recently Added</h2>
 <div>
-    <% events.forEach( event=>{ %>
-        <a href="/events/<%=event.id %>">
-        %>
-        <img height="150" width="100" src="<%= event.coverImagePath%>">
-        </a>
-    <%
-    }) %>
+    <%- include('partials/bookgrid',{events:events, large:true}) %>
 </div>

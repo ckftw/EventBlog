@@ -1,1 +1,5 @@
-<%= locals.errorMessage %>
+<% if(locals.errorMessage !=null){%>
+<div class="error-message">
+    <%= locals.errorMessage %>
+</div>
+<%} %>
