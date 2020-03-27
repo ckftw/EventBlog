@@ -10,6 +10,7 @@ const methodOverride = require('method-override')
 const indexRouter = require('./routes/index')
 const locationRouter = require('./routes/location')
 const eventRouter = require('./routes/events')
+const loginRouter = require('./routes/login')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({limit: '20mb', extended:false}))
 app.use('/', indexRouter)
 app.use('/locations', locationRouter)
 app.use('/events', eventRouter)
+app.use('/login', loginRouter)
 
 
 app.listen(process.env.PORT || 3000)

@@ -4,11 +4,12 @@ const Event = require('../models/event')
 router.get('/',async (req,res)=>{
     let events
     try{
-        events = await Event.find().limit(20).exec()
+        events = await Event.find().limit(5).exec()
     } catch{
         events=[]
     }
     res.render('index' ,{events: events})
+    
 })
 
 

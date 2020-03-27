@@ -1,0 +1,13 @@
+<% eventCoverClass=locals.large ?
+'event-cover-large': '' %>
+
+<% eventGridClass=locals.large ?
+'event-grid-large': '' %>
+
+<div class="event-grid <%=eventGridClass %>">
+    <% events.forEach(event=>{%>
+    <a href="/events/<%= event.id %>">
+        <img class="event-cover <%=eventCoverClass %>" src="<%=event.coverImagePath %>">
+    </a>
+    <%}) %>
+</div>

@@ -4,6 +4,7 @@
 @import 'shared/form.css';
 @import 'shared/locations.css';
 @import 'shared/events.css';
+@import 'shared/admin.css';
 
 :root{
     font-size:20px;

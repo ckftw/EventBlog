@@ -3,7 +3,7 @@
     <div>
         <img class="event-cover" src="<%= event.coverImagePath %>">
         <div class="event-details-btn-grid">
-            <a class="btn btn-primary" href="/events<%= event.id %> /edit">Edit</a>
+            <a class="btn btn-primary" href="/events/<%= event.id %>/edit">Edit</a>
             <%- include('../partials/deleteForm', {url:`/events/${event.id}`}) %>
             <a class="btn btn-primary event-details-location-button" href="/locations/<%= event.location.id %>">View
                 Location</a>

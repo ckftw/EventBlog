@@ -46,30 +46,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-//UPDATE
-router.put("/:id", async (req, res) => {
-    let event
-    try {
-        event =await Event.findById(req.params.id)
-        event.title=req.body.title
-        event.location=req.body.location
-        event.evenDate= new Date(req.body.evenDate)
-        event.cost=req.body.cost
-        event.description = req.body.description
-        if(req.body.cover!=null && req.body.cover!==''){
-            saveCover(event, req.body.cover)
-        }
-        await event.save()
-        res.redirect(`events/${event.id}`);
-    } catch {
-        if(event!== null){
-            renderEditPage(res, event, true);
-        }else{
-            res.redirect('/')
-        }
-    }
-});
-
 //SHOW EVENTS
 
 router.get('/:id', async(req,res)=>{
@@ -84,12 +60,40 @@ router.get('/:id', async(req,res)=>{
 //edit events
 router.get('/:id/edit', async (req, res) => {
     try {
-      const event = await Event.findById(req.params.id)
-      renderEditPage(res, event)
-    } catch {
-      res.redirect('/')
+        const event = await Event.findById(req.params.id)
+        renderEditPage(res, event)
+    } catch{
+        res.redirect('/')
     }
-  })
+})
+
+//UPDATE
+router.put('/:id', async (req, res) => {
+    let event
+    try { 
+        event =await Event.findById(req.params.id)
+        event.title=req.body.title
+        event.location=req.body.location
+        event.evenDate= new Date(req.body.evenDate)
+        event.cost=req.body.cost
+        event.description = req.body.description
+        if(req.body.cover!=null && req.body.cover!==''){
+            saveCover(event, req.body.cover)
+        }
+        await event.save()
+        res.redirect(`/events/${event.id}`);
+    } catch {
+        if(event!= null){
+            renderEditPage(res, event, true);
+        }else{
+            redirect('/')
+        }
+    }
+});
+
+
+
+
 
   //delete events
   router.delete('/:id', async (req, res) => {
@@ -116,7 +120,7 @@ async function renderNewPage(res, event, hasError = false) {
 
 async function renderEditPage(res, event, hasError = false) {
     renderFormPage(res, event, 'edit', hasError)
-  }
+}
 
 async function renderFormPage(res,event,form , hasError=false){
     try {
@@ -127,7 +131,7 @@ async function renderFormPage(res,event,form , hasError=false){
         };
         if(hasError){
             if(form == 'edit'){
-                params.errorMessage = "Error updating book"
+                params.errorMessage = "Error updating event"
             }
             else{
                 params.errorMessage = "Error creating event";
